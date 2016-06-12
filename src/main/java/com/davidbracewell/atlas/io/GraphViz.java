@@ -25,8 +25,8 @@ import com.davidbracewell.SystemInfo;
 import com.davidbracewell.atlas.Edge;
 import com.davidbracewell.atlas.Graph;
 import com.davidbracewell.atlas.Vertex;
+import com.davidbracewell.collection.HashMapIndex;
 import com.davidbracewell.collection.Index;
-import com.davidbracewell.collection.Indexes;
 import com.davidbracewell.config.Config;
 import com.davidbracewell.io.Resources;
 import com.davidbracewell.io.resource.Resource;
@@ -199,7 +199,7 @@ public class GraphViz<V> implements GraphWriter<V>, GraphRenderer<V> {
         writer.newLine();
       }
 
-      Index<V> vertexIndex = Indexes.newIndex(graph.vertices());
+      Index<V> vertexIndex = new HashMapIndex<>(graph.vertices());
 
       for (V vertex : graph.vertices()) {
         Vertex vertexProps = vertexEncoder.encode(vertex);

@@ -24,7 +24,7 @@ package com.davidbracewell.atlas;
 
 import com.davidbracewell.collection.Collect;
 import com.davidbracewell.collection.Counter;
-import com.davidbracewell.collection.Counters;
+import com.davidbracewell.collection.HashMapCounter;
 import com.davidbracewell.conversion.Cast;
 import com.google.common.collect.Sets;
 import lombok.NonNull;
@@ -207,7 +207,7 @@ public interface Graph<V> extends Iterable<V> {
    * @return The weights associated with the edges to the successors
    */
   default Counter<V> getSuccessorWeights(V vertex) {
-    Counter<V> counter = Counters.newHashMapCounter();
+    Counter<V> counter = new HashMapCounter<>();
     for (V v2 : getSuccessors(vertex)) {
       counter.set(v2, getEdge(vertex, v2).getWeight());
     }
@@ -221,7 +221,7 @@ public interface Graph<V> extends Iterable<V> {
    * @return The weights associated with the edges to the predecessors
    */
   default Counter<V> getPredecessorsWeights(V vertex) {
-    Counter<V> counter = Counters.newHashMapCounter();
+    Counter<V> counter = new HashMapCounter<>();
     for (V v2 : getPredecessors(vertex)) {
       counter.set(v2, getEdge(vertex, v2).getWeight());
     }
@@ -383,7 +383,7 @@ public interface Graph<V> extends Iterable<V> {
    * @return A stream of the vertices in this graph
    */
   default Stream<V> stream() {
-    return Collect.from(this);
+    return Collect.stream(this);
   }
 
   /**
@@ -392,7 +392,7 @@ public interface Graph<V> extends Iterable<V> {
    * @return A stream of the vertices in this graph
    */
   default Stream<V> parallelstream() {
-    return Collect.parallelFrom(this);
+    return Collect.stream(this, true);
   }
 
 }//END OF Graph

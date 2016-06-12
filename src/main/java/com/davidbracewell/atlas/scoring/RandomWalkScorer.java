@@ -24,7 +24,7 @@ package com.davidbracewell.atlas.scoring;
 import com.davidbracewell.atlas.Graph;
 import com.davidbracewell.atlas.algorithms.RandomWalk;
 import com.davidbracewell.collection.Counter;
-import com.davidbracewell.collection.Counters;
+import com.davidbracewell.collection.HashMapCounter;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
@@ -55,7 +55,7 @@ public class RandomWalkScorer<V> extends AbstractVertexScorer<V> {
   @Override
   public Counter<V> score(Graph<V> g) {
     Preconditions.checkNotNull(g, "The graph must not be null.");
-    Counter<V> scores = Counters.newHashMapCounter();
+    Counter<V> scores = new HashMapCounter<>();
     Random random = new Random();
     RandomWalk<V> randomWalk = new RandomWalk<>(g);
     List<V> vertices = Lists.newArrayList(g.vertices());

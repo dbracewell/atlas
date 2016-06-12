@@ -23,10 +23,7 @@ package com.davidbracewell.atlas.algorithms;
 
 import com.davidbracewell.atlas.Edge;
 import com.davidbracewell.atlas.Graph;
-import com.davidbracewell.collection.Counter;
-import com.davidbracewell.collection.Counters;
-import com.davidbracewell.collection.LRUMap;
-import com.davidbracewell.collection.Sorting;
+import com.davidbracewell.collection.*;
 import com.davidbracewell.conversion.Cast;
 import com.davidbracewell.tuple.Tuple2;
 import com.google.common.base.Preconditions;
@@ -76,7 +73,7 @@ public class DijkstraShortestPath<V> implements SingleSourceShortestPath<V>, Sho
     Preconditions.checkNotNull(source);
     Preconditions.checkArgument(graph.containsVertex(source), "Vertex must be in the graph.");
 
-    Counter<V> distances = Counters.newHashMapCounter();
+    Counter<V> distances = new HashMapCounter<>();
 
     if (!pathMap.containsKey(source)) {
       singleSourceShortestPath(source);
@@ -109,7 +106,7 @@ public class DijkstraShortestPath<V> implements SingleSourceShortestPath<V>, Sho
       return pathMap.get(source);
     }
 
-    Counter<V> distances = Counters.newHashMapCounter();
+    Counter<V> distances = new HashMapCounter<>();
     Set<V> visited = new HashSet<>(Collections.singleton(source));
     Map<V, V> previous = Maps.newHashMap();
 

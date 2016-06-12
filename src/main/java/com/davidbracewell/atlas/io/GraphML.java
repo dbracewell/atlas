@@ -25,8 +25,8 @@ import com.davidbracewell.atlas.AdjacencyMatrix;
 import com.davidbracewell.atlas.Edge;
 import com.davidbracewell.atlas.Graph;
 import com.davidbracewell.atlas.Vertex;
+import com.davidbracewell.collection.HashMapIndex;
 import com.davidbracewell.collection.Index;
-import com.davidbracewell.collection.Indexes;
 import com.davidbracewell.conversion.Cast;
 import com.davidbracewell.io.resource.Resource;
 import com.google.common.collect.Multimap;
@@ -188,7 +188,7 @@ public class GraphML<V> implements GraphReader<V>, GraphWriter<V> {
     GraphType graphType = new GraphType();
     graphType.setEdgedefault(graph.isDirected() ? GraphEdgedefaultType.DIRECTED : GraphEdgedefaultType.UNDIRECTED);
     graphType.setId("G");
-    Index<V> vertexIndex = Indexes.newIndex(graph.vertices());
+    Index<V> vertexIndex = new HashMapIndex<>(graph.vertices());
 
 
     for (V vertex : graph.vertices()) {

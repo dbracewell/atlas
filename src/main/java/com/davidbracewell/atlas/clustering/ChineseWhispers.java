@@ -24,7 +24,7 @@ package com.davidbracewell.atlas.clustering;
 import com.davidbracewell.atlas.Edge;
 import com.davidbracewell.atlas.Graph;
 import com.davidbracewell.collection.Counter;
-import com.davidbracewell.collection.Counters;
+import com.davidbracewell.collection.HashMapCounter;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -116,7 +116,7 @@ public class ChineseWhispers<V> implements Clusterer<V> {
       for (V v1 : shuffled) {
 
         // Determine the max label
-        Counter<Integer> labelCntr = Counters.newHashMapCounter();
+        Counter<Integer> labelCntr = new HashMapCounter<>();
         double maxScore = Double.NEGATIVE_INFINITY;
         int maxV = -1;
         for (V v2 : g.getNeighbors(v1)) {

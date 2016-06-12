@@ -23,7 +23,7 @@ package com.davidbracewell.atlas.scoring;
 
 import com.davidbracewell.atlas.Graph;
 import com.davidbracewell.collection.Counter;
-import com.davidbracewell.collection.Counters;
+import com.davidbracewell.collection.HashMapCounter;
 import com.google.common.base.Preconditions;
 
 /**
@@ -49,7 +49,7 @@ public class PageRank<V> extends AbstractVertexScorer<V> {
   @Override
   public Counter<V> score(Graph<V> g) {
     Preconditions.checkNotNull(g, "The graph must not be null.");
-    Counter<V> pageRank = Counters.newHashMapCounter();
+    Counter<V> pageRank = new HashMapCounter<>();
     for (V vertex : g.vertices()) {
       pageRank.increment(vertex, 1d / g.numberOfVertices());
     }
@@ -58,7 +58,7 @@ public class PageRank<V> extends AbstractVertexScorer<V> {
     for (int itr = 0; itr < maxIterations; itr++) {
       double thisValue = 0d;
 
-      Counter<V> thisRound = Counters.newHashMapCounter();
+      Counter<V> thisRound = new HashMapCounter<>();
       for (V vertex : g.vertices()) {
 
         double pr = 0;
