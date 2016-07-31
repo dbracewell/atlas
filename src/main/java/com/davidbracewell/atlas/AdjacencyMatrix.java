@@ -68,7 +68,7 @@ public class AdjacencyMatrix<V> implements Graph<V>, Serializable {
    * @param edgeFactory the edge factory
    */
   public AdjacencyMatrix(EdgeFactory<V> edgeFactory) {
-    this(Preconditions.checkNotNull(edgeFactory), new HashSet<>(), HashBasedTable.<V, V, Edge<V>>create());
+    this(Preconditions.checkNotNull(edgeFactory), new LinkedHashSet<>(), HashBasedTable.create());
   }
 
   /**

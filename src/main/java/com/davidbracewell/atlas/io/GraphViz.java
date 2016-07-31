@@ -49,7 +49,7 @@ import java.util.Map;
  */
 public class GraphViz<V> implements GraphWriter<V>, GraphRenderer<V> {
 
-  enum Format {
+  public enum Format {
     JPG("jpg"),
     PNG("png"),
     SVG("svg");
