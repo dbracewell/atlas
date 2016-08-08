@@ -30,6 +30,7 @@ import com.davidbracewell.atlas.Vertex;
  * @param <V> the vertex type
  * @author David B. Bracewell
  */
+@FunctionalInterface
 public interface VertexEncoder<V> {
 
   /**

@@ -23,7 +23,10 @@ package com.davidbracewell.atlas.algorithms;
 
 import com.davidbracewell.atlas.Edge;
 import com.davidbracewell.atlas.Graph;
-import com.davidbracewell.collection.*;
+import com.davidbracewell.collection.Counter;
+import com.davidbracewell.collection.HashMapCounter;
+import com.davidbracewell.collection.LRUMap;
+import com.davidbracewell.collection.Sorting;
 import com.davidbracewell.conversion.Cast;
 import com.davidbracewell.tuple.Tuple2;
 import com.google.common.base.Preconditions;
@@ -32,6 +35,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.MinMaxPriorityQueue;
 import com.google.common.primitives.Doubles;
+import lombok.NonNull;
 
 import java.util.*;
 
@@ -69,8 +73,7 @@ public class DijkstraShortestPath<V> implements SingleSourceShortestPath<V>, Sho
 
 
   @Override
-  public Counter<V> singleSourceShortestDistance(V source) {
-    Preconditions.checkNotNull(source);
+  public Counter<V> singleSourceShortestDistance(@NonNull V source) {
     Preconditions.checkArgument(graph.containsVertex(source), "Vertex must be in the graph.");
 
     Counter<V> distances = new HashMapCounter<>();
@@ -158,6 +161,9 @@ public class DijkstraShortestPath<V> implements SingleSourceShortestPath<V>, Sho
         while (!stack.isEmpty()) {
           V to = stack.pop();
           Edge<V> edge = graph.getEdge(from, to);
+          if (treatUndirected && edge == null) {
+            edge = graph.getEdge(to, from);
+          }
           list.put(v, edge);
           from = to;
         }

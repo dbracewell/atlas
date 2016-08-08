@@ -70,7 +70,7 @@ public interface Graph<V> extends Iterable<V> {
    */
   default void addEdges(Collection<Edge<V>> edges) {
     if (edges != null) {
-      edges.stream().forEach(this::addEdge);
+      edges.stream().filter(e -> !containsEdge(e)).forEach(this::addEdge);
     }
   }
 
