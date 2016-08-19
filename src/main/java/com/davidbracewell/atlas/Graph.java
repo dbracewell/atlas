@@ -22,9 +22,8 @@
 package com.davidbracewell.atlas;
 
 
-import com.davidbracewell.collection.Collect;
-import com.davidbracewell.collection.Counter;
-import com.davidbracewell.collection.HashMapCounter;
+import com.davidbracewell.collection.counter.Counter;
+import com.davidbracewell.collection.counter.HashMapCounter;
 import com.davidbracewell.conversion.Cast;
 import com.google.common.collect.Sets;
 import lombok.NonNull;
@@ -32,6 +31,9 @@ import lombok.NonNull;
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Stream;
+
+import static com.davidbracewell.collection.CollectionHelpers.asParallelStream;
+import static com.davidbracewell.collection.CollectionHelpers.asStream;
 
 /**
  * <p>Interface defining a graph data structure.</p>
@@ -383,7 +385,7 @@ public interface Graph<V> extends Iterable<V> {
    * @return A stream of the vertices in this graph
    */
   default Stream<V> stream() {
-    return Collect.stream(this);
+    return asStream(this);
   }
 
   /**
@@ -392,7 +394,7 @@ public interface Graph<V> extends Iterable<V> {
    * @return A stream of the vertices in this graph
    */
   default Stream<V> parallelstream() {
-    return Collect.stream(this, true);
+    return asParallelStream(this);
   }
 
 }//END OF Graph

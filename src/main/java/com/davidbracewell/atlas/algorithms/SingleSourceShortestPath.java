@@ -22,7 +22,7 @@
 package com.davidbracewell.atlas.algorithms;
 
 import com.davidbracewell.atlas.Edge;
-import com.davidbracewell.collection.Counter;
+import com.davidbracewell.collection.counter.Counter;
 import com.google.common.collect.ArrayListMultimap;
 
 /**

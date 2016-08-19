@@ -23,7 +23,7 @@ package com.davidbracewell.atlas.scoring;
 
 
 import com.davidbracewell.atlas.Graph;
-import com.davidbracewell.collection.Counter;
+import com.davidbracewell.collection.counter.Counter;
 
 import java.util.List;
 import java.util.Map;

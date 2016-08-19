@@ -22,7 +22,7 @@
 package com.davidbracewell.atlas.algorithms;
 
 import com.davidbracewell.atlas.Graph;
-import com.davidbracewell.collection.Counter;
+import com.davidbracewell.collection.counter.Counter;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Iterables;
 

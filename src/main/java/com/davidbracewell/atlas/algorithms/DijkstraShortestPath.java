@@ -23,9 +23,9 @@ package com.davidbracewell.atlas.algorithms;
 
 import com.davidbracewell.atlas.Edge;
 import com.davidbracewell.atlas.Graph;
-import com.davidbracewell.collection.Counter;
-import com.davidbracewell.collection.HashMapCounter;
-import com.davidbracewell.collection.LRUMap;
+import com.davidbracewell.collection.counter.Counter;
+import com.davidbracewell.collection.counter.HashMapCounter;
+import com.davidbracewell.collection.map.LRUMap;
 import com.davidbracewell.collection.Sorting;
 import com.davidbracewell.conversion.Cast;
 import com.davidbracewell.tuple.Tuple2;

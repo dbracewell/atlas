@@ -23,8 +23,8 @@ package com.davidbracewell.atlas.clustering;
 
 import com.davidbracewell.atlas.Edge;
 import com.davidbracewell.atlas.Graph;
-import com.davidbracewell.collection.Counter;
-import com.davidbracewell.collection.HashMapCounter;
+import com.davidbracewell.collection.counter.Counter;
+import com.davidbracewell.collection.counter.HashMapCounter;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
