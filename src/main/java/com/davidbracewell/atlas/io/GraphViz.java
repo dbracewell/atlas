@@ -25,8 +25,8 @@ import com.davidbracewell.SystemInfo;
 import com.davidbracewell.atlas.Edge;
 import com.davidbracewell.atlas.Graph;
 import com.davidbracewell.atlas.Vertex;
-import com.davidbracewell.collection.index.HashMapIndex;
 import com.davidbracewell.collection.index.Index;
+import com.davidbracewell.collection.index.Indexes;
 import com.davidbracewell.config.Config;
 import com.davidbracewell.io.Resources;
 import com.davidbracewell.io.resource.Resource;
@@ -199,11 +199,11 @@ public class GraphViz<V> implements GraphWriter<V>, GraphRenderer<V> {
         writer.newLine();
       }
 
-      Index<V> vertexIndex = new HashMapIndex<>(graph.vertices());
+      Index<V> vertexIndex = Indexes.newIndex(graph.vertices());
 
       for (V vertex : graph.vertices()) {
         Vertex vertexProps = vertexEncoder.encode(vertex);
-        writer.write(Integer.toString(vertexIndex.indexOf(vertex)));
+        writer.write(Integer.toString(vertexIndex.getId(vertex)));
         writer.write(" [");
         writer.write("label=" + escape(vertexProps.getLabel()) + " ");
         for (Map.Entry<String, String> entry : vertexProps.getProperties().entrySet()) {
@@ -214,13 +214,13 @@ public class GraphViz<V> implements GraphWriter<V>, GraphRenderer<V> {
       }
 
       for (Edge<V> edge : graph.edges()) {
-        writer.write(Integer.toString(vertexIndex.indexOf(edge.getFirstVertex())));
+        writer.write(Integer.toString(vertexIndex.getId(edge.getFirstVertex())));
         if (graph.isDirected()) {
           writer.write(" -> ");
         } else {
           writer.write(" -- ");
         }
-        writer.write(Integer.toString(vertexIndex.indexOf(edge.getSecondVertex())));
+        writer.write(Integer.toString(vertexIndex.getId(edge.getSecondVertex())));
 
         Map<String, String> edgeProps = edgeEncoder.encode(edge);
         if (edgeProps != null && !edgeProps.isEmpty()) {

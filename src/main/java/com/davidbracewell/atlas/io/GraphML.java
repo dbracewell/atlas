@@ -25,8 +25,8 @@ import com.davidbracewell.atlas.AdjacencyMatrix;
 import com.davidbracewell.atlas.Edge;
 import com.davidbracewell.atlas.Graph;
 import com.davidbracewell.atlas.Vertex;
-import com.davidbracewell.collection.index.HashMapIndex;
 import com.davidbracewell.collection.index.Index;
+import com.davidbracewell.collection.index.Indexes;
 import com.davidbracewell.conversion.Cast;
 import com.davidbracewell.io.resource.Resource;
 import com.google.common.collect.Multimap;
@@ -188,13 +188,13 @@ public class GraphML<V> implements GraphReader<V>, GraphWriter<V> {
     GraphType graphType = new GraphType();
     graphType.setEdgedefault(graph.isDirected() ? GraphEdgedefaultType.DIRECTED : GraphEdgedefaultType.UNDIRECTED);
     graphType.setId("G");
-    Index<V> vertexIndex = new HashMapIndex<>(graph.vertices());
+    Index<V> vertexIndex = Indexes.newIndex(graph.vertices());
 
 
     for (V vertex : graph.vertices()) {
       Vertex vertexProps = vertexEncoder.encode(vertex);
       NodeType node = new NodeType();
-      node.setId(Integer.toString(vertexIndex.indexOf(vertex)));
+      node.setId(Integer.toString(vertexIndex.getId(vertex)));
 
       DataType dataType = new DataType();
       dataType.setKey("label");
@@ -214,8 +214,8 @@ public class GraphML<V> implements GraphReader<V>, GraphWriter<V> {
     for (Edge<V> edge : graph.edges()) {
       EdgeType edgeType = new EdgeType();
       edgeType.setDirected(graph.isDirected());
-      edgeType.setSource(Integer.toString(vertexIndex.indexOf(edge.getFirstVertex())));
-      edgeType.setTarget(Integer.toString(vertexIndex.indexOf(edge.getSecondVertex())));
+      edgeType.setSource(Integer.toString(vertexIndex.getId(edge.getFirstVertex())));
+      edgeType.setTarget(Integer.toString(vertexIndex.getId(edge.getSecondVertex())));
 
       Map<String, String> edgeProperties = edgeEncoder.encode(edge);
       for (Map.Entry<String, String> property : edgeProperties.entrySet()) {
