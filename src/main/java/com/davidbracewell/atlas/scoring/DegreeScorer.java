@@ -23,7 +23,7 @@ package com.davidbracewell.atlas.scoring;
 
 import com.davidbracewell.atlas.Graph;
 import com.davidbracewell.collection.counter.Counter;
-import com.davidbracewell.collection.counter.HashMapCounter;
+import com.davidbracewell.collection.counter.Counters;
 import com.google.common.base.Preconditions;
 
 /**
@@ -54,7 +54,7 @@ public class DegreeScorer<V> extends AbstractVertexScorer<V> {
   @Override
   public Counter<V> score(Graph<V> g) {
     Preconditions.checkNotNull(g, "The graph must not be null.");
-    Counter<V> scores = new HashMapCounter<>();
+    Counter<V> scores = Counters.newCounter();
     for (V vertex : g.vertices()) {
       switch (rankType) {
         case IN:

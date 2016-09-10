@@ -24,7 +24,7 @@ package com.davidbracewell.atlas.scoring;
 import com.davidbracewell.atlas.Graph;
 import com.davidbracewell.atlas.algorithms.RandomWalk;
 import com.davidbracewell.collection.counter.Counter;
-import com.davidbracewell.collection.counter.HashMapCounter;
+import com.davidbracewell.collection.counter.Counters;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
@@ -36,35 +36,35 @@ import java.util.Random;
  */
 public class RandomWalkScorer<V> extends AbstractVertexScorer<V> {
 
-  private static final long serialVersionUID = -15522220356650235L;
+   private static final long serialVersionUID = -15522220356650235L;
 
-  private final int numberOfIterations;
-  private final int numberOfSteps;
+   private final int numberOfIterations;
+   private final int numberOfSteps;
 
-  /**
-   * Default Constructor
-   *
-   * @param numberOfIterations Number of iterations to run
-   * @param numberOfSteps      Number of steps to take on each random walk
-   */
-  public RandomWalkScorer(int numberOfIterations, int numberOfSteps) {
-    this.numberOfIterations = numberOfIterations;
-    this.numberOfSteps = numberOfSteps;
-  }
+   /**
+    * Default Constructor
+    *
+    * @param numberOfIterations Number of iterations to run
+    * @param numberOfSteps      Number of steps to take on each random walk
+    */
+   public RandomWalkScorer(int numberOfIterations, int numberOfSteps) {
+      this.numberOfIterations = numberOfIterations;
+      this.numberOfSteps = numberOfSteps;
+   }
 
-  @Override
-  public Counter<V> score(Graph<V> g) {
-    Preconditions.checkNotNull(g, "The graph must not be null.");
-    Counter<V> scores = new HashMapCounter<>();
-    Random random = new Random();
-    RandomWalk<V> randomWalk = new RandomWalk<>(g);
-    List<V> vertices = Lists.newArrayList(g.vertices());
-    for (int i = 0; i < numberOfIterations; i++) {
-      V startingPoint = vertices.get(random.nextInt(vertices.size()));
-      scores.increment(randomWalk.walk(startingPoint, numberOfSteps));
-    }
+   @Override
+   public Counter<V> score(Graph<V> g) {
+      Preconditions.checkNotNull(g, "The graph must not be null.");
+      Counter<V> scores = Counters.newCounter();
+      Random random = new Random();
+      RandomWalk<V> randomWalk = new RandomWalk<>(g);
+      List<V> vertices = Lists.newArrayList(g.vertices());
+      for (int i = 0; i < numberOfIterations; i++) {
+         V startingPoint = vertices.get(random.nextInt(vertices.size()));
+         scores.increment(randomWalk.walk(startingPoint, numberOfSteps));
+      }
 
-    return scores;
-  }
+      return scores;
+   }
 
 }//END OF RandomWalkScorer

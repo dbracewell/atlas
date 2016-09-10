@@ -24,7 +24,7 @@ package com.davidbracewell.atlas;
 
 import com.davidbracewell.collection.Streams;
 import com.davidbracewell.collection.counter.Counter;
-import com.davidbracewell.collection.counter.HashMapCounter;
+import com.davidbracewell.collection.counter.Counters;
 import com.davidbracewell.conversion.Cast;
 import com.google.common.collect.Sets;
 import lombok.NonNull;
@@ -207,7 +207,7 @@ public interface Graph<V> extends Iterable<V> {
    * @return The weights associated with the edges to the successors
    */
   default Counter<V> getSuccessorWeights(V vertex) {
-    Counter<V> counter = new HashMapCounter<>();
+    Counter<V> counter = Counters.newCounter();
     for (V v2 : getSuccessors(vertex)) {
       counter.set(v2, getEdge(vertex, v2).getWeight());
     }
@@ -221,7 +221,7 @@ public interface Graph<V> extends Iterable<V> {
    * @return The weights associated with the edges to the predecessors
    */
   default Counter<V> getPredecessorsWeights(V vertex) {
-    Counter<V> counter = new HashMapCounter<>();
+    Counter<V> counter = Counters.newCounter();
     for (V v2 : getPredecessors(vertex)) {
       counter.set(v2, getEdge(vertex, v2).getWeight());
     }

@@ -23,7 +23,7 @@ package com.davidbracewell.atlas.scoring;
 
 import com.davidbracewell.atlas.Graph;
 import com.davidbracewell.collection.counter.Counter;
-import com.davidbracewell.collection.counter.HashMapCounter;
+import com.davidbracewell.collection.counter.Counters;
 import com.google.common.base.Preconditions;
 
 /**
@@ -31,54 +31,54 @@ import com.google.common.base.Preconditions;
  */
 public class PageRank<V> extends AbstractVertexScorer<V> {
 
-  private static final long serialVersionUID = -7329282877612595474L;
-  private final double dampingFactor;
-  private final int maxIterations;
-  private final double tolerance;
+   private static final long serialVersionUID = -7329282877612595474L;
+   private final double dampingFactor;
+   private final int maxIterations;
+   private final double tolerance;
 
-  public PageRank() {
-    this(100, 0.85, 0.001);
-  }
+   public PageRank() {
+      this(100, 0.85, 0.001);
+   }
 
-  public PageRank(int maxIterations, double dampingFactor, double tolerance) {
-    this.maxIterations = maxIterations;
-    this.dampingFactor = dampingFactor;
-    this.tolerance = tolerance;
-  }
+   public PageRank(int maxIterations, double dampingFactor, double tolerance) {
+      this.maxIterations = maxIterations;
+      this.dampingFactor = dampingFactor;
+      this.tolerance = tolerance;
+   }
 
-  @Override
-  public Counter<V> score(Graph<V> g) {
-    Preconditions.checkNotNull(g, "The graph must not be null.");
-    Counter<V> pageRank = new HashMapCounter<>();
-    for (V vertex : g.vertices()) {
-      pageRank.increment(vertex, 1d / g.numberOfVertices());
-    }
-
-    double lastValue = 0d;
-    for (int itr = 0; itr < maxIterations; itr++) {
-      double thisValue = 0d;
-
-      Counter<V> thisRound = new HashMapCounter<>();
+   @Override
+   public Counter<V> score(Graph<V> g) {
+      Preconditions.checkNotNull(g, "The graph must not be null.");
+      Counter<V> pageRank = Counters.newCounter();
       for (V vertex : g.vertices()) {
-
-        double pr = 0;
-
-        for (V v2 : g.getPredecessors(vertex)) {
-          pr += (pageRank.get(v2) / g.outDegree(v2));
-        }
-
-        pr = (1 - dampingFactor) + dampingFactor * pr;
-        thisValue += pr;
-        thisRound.set(vertex, pr);
+         pageRank.increment(vertex, 1d / g.numberOfVertices());
       }
 
-      if (Math.abs(thisValue - lastValue) < tolerance) {
-        break;
+      double lastValue = 0d;
+      for (int itr = 0; itr < maxIterations; itr++) {
+         double thisValue = 0d;
+
+         Counter<V> thisRound = Counters.newCounter();
+         for (V vertex : g.vertices()) {
+
+            double pr = 0;
+
+            for (V v2 : g.getPredecessors(vertex)) {
+               pr += (pageRank.get(v2) / g.outDegree(v2));
+            }
+
+            pr = (1 - dampingFactor) + dampingFactor * pr;
+            thisValue += pr;
+            thisRound.set(vertex, pr);
+         }
+
+         if (Math.abs(thisValue - lastValue) < tolerance) {
+            break;
+         }
+         lastValue = thisValue;
+         pageRank = thisRound;
       }
-      lastValue = thisValue;
-      pageRank = thisRound;
-    }
-    return pageRank;
-  }
+      return pageRank;
+   }
 
 }//END OF PageRank
