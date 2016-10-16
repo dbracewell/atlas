@@ -66,8 +66,8 @@ public class DijkstraShortestPath<V> implements SingleSourceShortestPath<V>, Sho
     * @param graph           the graph
     * @param treatUndirected the treat undirected
     */
-   public DijkstraShortestPath(Graph<V> graph, boolean treatUndirected) {
-      this.graph = Preconditions.checkNotNull(graph);
+   public DijkstraShortestPath(@NonNull Graph<V> graph, boolean treatUndirected) {
+      this.graph = graph;
       this.treatUndirected = treatUndirected;
    }
 
@@ -101,8 +101,7 @@ public class DijkstraShortestPath<V> implements SingleSourceShortestPath<V>, Sho
    }
 
    @Override
-   public ArrayListMultimap<V, Edge<V>> singleSourceShortestPath(V source) {
-      Preconditions.checkNotNull(source);
+   public ArrayListMultimap<V, Edge<V>> singleSourceShortestPath(@NonNull V source) {
       Preconditions.checkArgument(graph.containsVertex(source), "Vertex must be in the graph.");
 
       if (pathMap.containsKey(source)) {
@@ -174,19 +173,15 @@ public class DijkstraShortestPath<V> implements SingleSourceShortestPath<V>, Sho
    }
 
    @Override
-   public double distance(V from, V to) {
-      Preconditions.checkNotNull(from);
+   public double distance(@NonNull V from, @NonNull V to) {
       Preconditions.checkArgument(graph.containsVertex(from), "Vertex must be in the graph.");
-      Preconditions.checkNotNull(to);
       Preconditions.checkArgument(graph.containsVertex(to), "Vertex must be in the graph.");
       return singleSourceShortestDistance(from).get(to);
    }
 
    @Override
-   public List<Edge<V>> path(V from, V to) {
-      Preconditions.checkNotNull(from);
+   public List<Edge<V>> path(@NonNull V from, @NonNull V to) {
       Preconditions.checkArgument(graph.containsVertex(from), "Vertex must be in the graph.");
-      Preconditions.checkNotNull(to);
       Preconditions.checkArgument(graph.containsVertex(to), "Vertex must be in the graph.");
       return Collections.unmodifiableList(singleSourceShortestPath(from).get(to));
    }
