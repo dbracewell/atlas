@@ -28,13 +28,13 @@ import com.davidbracewell.atlas.Vertex;
 import com.davidbracewell.collection.index.Index;
 import com.davidbracewell.collection.index.Indexes;
 import com.davidbracewell.config.Config;
+import com.davidbracewell.guava.common.base.Charsets;
+import com.davidbracewell.guava.common.base.Throwables;
+import com.davidbracewell.guava.common.collect.Multimap;
 import com.davidbracewell.io.Resources;
 import com.davidbracewell.io.resource.Resource;
 import com.davidbracewell.logging.Logger;
 import com.davidbracewell.string.StringUtils;
-import com.google.common.base.Charsets;
-import com.google.common.base.Throwables;
-import com.google.common.collect.Multimap;
 import lombok.Builder;
 import lombok.NonNull;
 

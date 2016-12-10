@@ -22,11 +22,11 @@
 package com.davidbracewell.atlas;
 
 import com.davidbracewell.conversion.Cast;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.HashBasedTable;
-import com.google.common.collect.Iterators;
-import com.google.common.collect.Sets;
-import com.google.common.collect.Table;
+import com.davidbracewell.guava.common.base.Preconditions;
+import com.davidbracewell.guava.common.collect.HashBasedTable;
+import com.davidbracewell.guava.common.collect.Iterators;
+import com.davidbracewell.guava.common.collect.Sets;
+import com.davidbracewell.guava.common.collect.Table;
 
 import java.io.Serializable;
 import java.util.*;

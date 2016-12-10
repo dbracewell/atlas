@@ -23,9 +23,9 @@ package com.davidbracewell.atlas.io;
 
 
 import com.davidbracewell.atlas.Graph;
+import com.davidbracewell.guava.common.collect.ArrayListMultimap;
+import com.davidbracewell.guava.common.collect.Multimap;
 import com.davidbracewell.io.resource.Resource;
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
 
 import java.io.IOException;
 

@@ -24,7 +24,7 @@ package com.davidbracewell.atlas.scoring;
 import com.davidbracewell.atlas.Graph;
 import com.davidbracewell.collection.counter.Counter;
 import com.davidbracewell.collection.counter.Counters;
-import com.google.common.base.Preconditions;
+import com.davidbracewell.guava.common.base.Preconditions;
 
 /**
  * @author David B. Bracewell

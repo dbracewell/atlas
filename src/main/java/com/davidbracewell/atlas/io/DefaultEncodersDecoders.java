@@ -23,10 +23,10 @@ package com.davidbracewell.atlas.io;
 
 import com.davidbracewell.atlas.Vertex;
 import com.davidbracewell.conversion.Convert;
+import com.davidbracewell.guava.common.base.Throwables;
 import com.davidbracewell.io.resource.Resource;
 import com.davidbracewell.io.resource.StringResource;
 import com.davidbracewell.io.serialization.JSONSerializer;
-import com.google.common.base.Throwables;
 import lombok.NonNull;
 
 import java.util.Collections;

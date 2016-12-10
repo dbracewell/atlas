@@ -25,8 +25,8 @@ import com.davidbracewell.atlas.Graph;
 import com.davidbracewell.atlas.algorithms.RandomWalk;
 import com.davidbracewell.collection.counter.Counter;
 import com.davidbracewell.collection.counter.Counters;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
+import com.davidbracewell.guava.common.base.Preconditions;
+import com.davidbracewell.guava.common.collect.Lists;
 
 import java.util.List;
 import java.util.Random;

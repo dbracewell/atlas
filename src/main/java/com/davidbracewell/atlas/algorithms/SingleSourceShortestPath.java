@@ -23,7 +23,7 @@ package com.davidbracewell.atlas.algorithms;
 
 import com.davidbracewell.atlas.Edge;
 import com.davidbracewell.collection.counter.Counter;
-import com.google.common.collect.ArrayListMultimap;
+import com.davidbracewell.guava.common.collect.ArrayListMultimap;
 
 /**
  * The interface Single source shortest path.
