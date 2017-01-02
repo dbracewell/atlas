@@ -22,9 +22,9 @@
 package com.davidbracewell.atlas.search;
 
 import com.davidbracewell.atlas.Graph;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
+import com.davidbracewell.guava.common.base.Preconditions;
+import com.davidbracewell.guava.common.collect.Lists;
+import com.davidbracewell.guava.common.collect.Sets;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

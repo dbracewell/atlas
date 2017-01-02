@@ -24,8 +24,8 @@ package com.davidbracewell.atlas.search;
 import com.davidbracewell.atlas.Edge;
 import com.davidbracewell.atlas.Graph;
 import com.davidbracewell.atlas.algorithms.VertexTraversal;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
+import com.davidbracewell.guava.common.base.Preconditions;
+import com.davidbracewell.guava.common.collect.Lists;
 
 import java.io.Serializable;
 import java.util.Collections;

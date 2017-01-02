@@ -33,6 +33,7 @@ import java.util.Map;
  * @param <V> the vertex type
  * @author David B. Bracewell
  */
+@FunctionalInterface
 public interface EdgeEncoder<V> {
 
 

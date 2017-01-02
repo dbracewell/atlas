@@ -22,15 +22,16 @@
 package com.davidbracewell.atlas.io;
 
 import com.davidbracewell.atlas.Vertex;
-import com.davidbracewell.collection.Collect;
 import com.davidbracewell.conversion.Convert;
+import com.davidbracewell.guava.common.base.Throwables;
 import com.davidbracewell.io.resource.Resource;
 import com.davidbracewell.io.resource.StringResource;
 import com.davidbracewell.io.serialization.JSONSerializer;
-import com.google.common.base.Throwables;
 import lombok.NonNull;
 
 import java.util.Collections;
+
+import static com.davidbracewell.collection.map.Maps.map;
 
 /**
  * <p>Default encoders and decoders.</p>
@@ -73,7 +74,7 @@ public interface DefaultEncodersDecoders {
   static <V> EdgeEncoder<V> defaultEdgeEncoder() {
     return edge -> {
       if (edge.isWeighted()) {
-        return Collect.map(EDGE_WEIGHT_KEY, Double.toString(edge.getWeight()));
+        return map(EDGE_WEIGHT_KEY, Double.toString(edge.getWeight()));
       } else {
         return Collections.emptyMap();
       }

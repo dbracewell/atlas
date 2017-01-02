@@ -22,7 +22,7 @@
 package com.davidbracewell.atlas.clustering;
 
 import com.davidbracewell.atlas.Graph;
-import com.google.common.base.Preconditions;
+import com.davidbracewell.guava.common.base.Preconditions;
 
 import java.util.*;
 

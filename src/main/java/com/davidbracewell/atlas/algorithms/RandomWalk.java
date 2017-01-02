@@ -22,9 +22,9 @@
 package com.davidbracewell.atlas.algorithms;
 
 import com.davidbracewell.atlas.Graph;
-import com.davidbracewell.collection.Counter;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Iterables;
+import com.davidbracewell.collection.counter.Counter;
+import com.davidbracewell.guava.common.base.Preconditions;
+import com.davidbracewell.guava.common.collect.Iterables;
 
 import java.io.Serializable;
 import java.util.Iterator;

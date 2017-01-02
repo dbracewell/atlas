@@ -22,11 +22,11 @@
 package com.davidbracewell.atlas;
 
 import com.davidbracewell.conversion.Cast;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.HashBasedTable;
-import com.google.common.collect.Iterators;
-import com.google.common.collect.Sets;
-import com.google.common.collect.Table;
+import com.davidbracewell.guava.common.base.Preconditions;
+import com.davidbracewell.guava.common.collect.HashBasedTable;
+import com.davidbracewell.guava.common.collect.Iterators;
+import com.davidbracewell.guava.common.collect.Sets;
+import com.davidbracewell.guava.common.collect.Table;
 
 import java.io.Serializable;
 import java.util.*;
@@ -68,7 +68,7 @@ public class AdjacencyMatrix<V> implements Graph<V>, Serializable {
    * @param edgeFactory the edge factory
    */
   public AdjacencyMatrix(EdgeFactory<V> edgeFactory) {
-    this(Preconditions.checkNotNull(edgeFactory), new HashSet<>(), HashBasedTable.<V, V, Edge<V>>create());
+    this(Preconditions.checkNotNull(edgeFactory), new LinkedHashSet<>(), HashBasedTable.create());
   }
 
   /**

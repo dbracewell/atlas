@@ -23,7 +23,7 @@ package com.davidbracewell.atlas.scoring;
 
 import com.davidbracewell.atlas.Graph;
 import com.davidbracewell.collection.Sorting;
-import com.google.common.base.Preconditions;
+import com.davidbracewell.guava.common.base.Preconditions;
 
 import java.io.Serializable;
 import java.util.List;

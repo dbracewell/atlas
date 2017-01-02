@@ -22,7 +22,7 @@
 package com.davidbracewell.atlas;
 
 
-import com.davidbracewell.collection.Counter;
+import com.davidbracewell.collection.counter.Counter;
 
 import java.io.Serializable;
 import java.util.Collection;
