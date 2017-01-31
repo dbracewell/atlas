@@ -72,13 +72,10 @@ public class GraphUtilsTest {
     graphViz.setVertexDecoder(DefaultEncodersDecoders.jsonVertexDecoder(String.class));
     Resource r = new StringResource();
     graphViz.write(d1, r);
-    System.out.println(r.readToString());
 
 
     graphViz.setVertexDecoder(DefaultEncodersDecoders.defaultVertexDecoder(String.class));
     Graph<String> g2 = graphViz.read(r);
-    System.out.println(g2);
-
   }
 
   @Test
